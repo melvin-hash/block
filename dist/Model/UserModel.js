@@ -6,27 +6,41 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const UserSchema = new mongoose_1.default.Schema({
     FullName: {
-        type: String
+        type: String,
     },
     UserName: {
-        type: String
+        type: String,
     },
     Email: {
-        type: String
+        type: String,
+        required: true,
     },
     Password: {
-        type: String
-    },
-    Profile: {
-        type: mongoose_1.default.Types.ObjectId,
-        ref: "profile"
+        type: String,
     },
     PhoneNumber: {
-        type: Number
+        type: String,
+    },
+    AvailableBalance: {
+        type: Number,
+        default: 0,
+    },
+    InvestmentPlan: {
+        type: String,
+        enum: ["Beginners Plan", "Professional Plan", "Promo plan", "Master Plan"],
+        default: "Beginners Plan",
     },
     Verify: {
         type: Boolean,
-        default: false
+        default: false,
+    },
+    Profile: {
+        type: mongoose_1.default.Schema.Types.ObjectId,
+        ref: "profile",
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
     },
 });
 exports.default = mongoose_1.default.model("user", UserSchema);

@@ -7,6 +7,8 @@ const express_1 = __importDefault(require("express"));
 require("./Database/Database");
 const MainApp_1 = require("./MainApp");
 const path_1 = __importDefault(require("path"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const port = 5032;
 const app = (0, express_1.default)();
 (0, MainApp_1.MainApp)(app);

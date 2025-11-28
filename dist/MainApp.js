@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MainApp = void 0;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const UserRouter_1 = __importDefault(require("./Router/UserRouter"));
 const MainApp = (app) => {
     app.use(express_1.default.json());
     app.use((0, cors_1.default)());
@@ -14,7 +15,7 @@ const MainApp = (app) => {
             message: "Api is running successfully",
         });
     });
-    //   app.use("/api/v1", UserRouter)
+    app.use("/api/v1", UserRouter_1.default);
 };
 exports.MainApp = MainApp;
 //# sourceMappingURL=MainApp.js.map

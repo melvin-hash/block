@@ -1,12 +1,15 @@
 import mongoose from "mongoose";
 interface user {
-    FulllName: string;
+    FullName: string;
     UserName: string;
     Email: string;
     Password: string;
-    PhoneNumber: number;
-    Profile?: mongoose.Types.ObjectId;
+    PhoneNumber: string;
+    AvailableBalance: number;
+    InvestmentPlan: "Beginners Plan" | "Professional Plan" | "Promo plan" | "Master Plan";
     Verify: boolean;
+    Profile: mongoose.Types.ObjectId;
+    createdAt: Date;
 }
 interface Iuser extends user, mongoose.Document {
 }
