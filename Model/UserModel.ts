@@ -1,42 +1,63 @@
 import mongoose from "mongoose";
 
 interface user {
-  FulllName: string;
+  FullName: string;
   UserName: string;
   Email: string;
   Password: string;
-  PhoneNumber: number;
-    Profile?: mongoose.Types.ObjectId;
-    Verify: boolean;
-  
+  PhoneNumber: string;
+  AvailableBalance: number;
+  InvestmentPlan: "Beginners Plan" | "Professional Plan" | "Promo plan" | "Master Plan";
+  Verify: boolean;
+  Profile: mongoose.Types.ObjectId;
+  createdAt: Date;
 }
 
-interface Iuser extends user, mongoose.Document { }
-const UserSchema = new mongoose.Schema(
-    {
-        FullName: {
-            type: String
-        },
-        UserName: {
-            type: String
-        },
-        Email: {
-            type: String
-        },
-        Password: {
-            type:String
-        },
-        Profile: {
-            type: mongoose.Types.ObjectId,
-            ref:"profile"
-        },
-        PhoneNumber:{
-            type:Number
-        },
-        Verify: {
-            type: Boolean,
-            default:false
-        },
-       
-    })
-export default mongoose.model<Iuser>("user",UserSchema)
+interface Iuser extends user, mongoose.Document {}
+
+const UserSchema = new mongoose.Schema<Iuser>({
+  FullName: {
+    type: String,
+   
+  },
+  UserName: {
+    type: String,
+    
+  },
+  Email: {
+    type: String,
+    required: true,
+    
+  },
+  Password: {
+    type: String,
+   
+  },
+  PhoneNumber: {
+    type: String,
+    
+  },
+  AvailableBalance: {
+    type: Number,
+    default: 0,
+  },
+  InvestmentPlan: {
+    type: String,
+    enum: ["Beginners Plan", "Professional Plan", "Promo plan", "Master Plan"],
+    default: "Beginners Plan",
+  },
+  Verify: {
+    type: Boolean,
+    default: false,
+  },
+  Profile: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "profile",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+export default mongoose.model<Iuser>("user", UserSchema);

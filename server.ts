@@ -3,7 +3,8 @@ import mongoose from "mongoose"
 import "./Database/Database"
 import { MainApp } from "./MainApp"
 import path from "path"
-
+import dotenv from "dotenv"
+dotenv.config()
 
 const port = 5032
 const app: Application = express()

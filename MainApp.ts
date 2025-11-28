@@ -1,5 +1,7 @@
 import express, {Application } from "express";
 import cors from "cors";
+import UserRouter from "./Router/UserRouter";
+
 
 
 
@@ -12,7 +14,7 @@ export const MainApp = (app:Application) => {
       message: "Api is running successfully",
     });
   });
-//   app.use("/api/v1", UserRouter)
+  app.use("/api/v1", UserRouter)
   
   
 };
